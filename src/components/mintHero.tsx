@@ -28,7 +28,7 @@ export default function MintHero() {
   };
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center px-4 py-12 max-w-3xl lg:max-w-6xl mx-auto">
+    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center max-sm:w-full max-md:w-[80%] py-12 max-w-6xl  mx-auto">
       {/*  Left Section */}
       <div className="md:w-1/2 w-full font-inter flex flex-col items-center">
         {/* Animated NFT Display */}
