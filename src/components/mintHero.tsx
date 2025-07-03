@@ -28,18 +28,20 @@ export default function MintHero() {
   };
 
   return (
-    <div className="flex flex-wrap lg:flex-nowrap justify-center gap-10 items-center px-4 py-12 max-w-6xl mx-auto">
+    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center px-4 py-12 max-w-6xl mx-auto">
       {/*  Left Section */}
-      <div className="md:w-1/2 w-full flex flex-col items-center">
+      <div className="md:w-1/2 w-full font-inter flex flex-col items-center">
         {/* Animated NFT Display */}
-        <div className="w-64 h-64 relative overflow-hidden rounded-xl">
+        <div className="min-w-40 w-80 min-h-40 h-80 relative overflow-hidden rounded-xl flex items-center justify-center">
           {NFT_Images.map((src, i) => (
             <Image
               key={i}
               src={src}
               alt={`NFT ${i}`}
-              width={256}
-              height={256}
+              layout="fill"
+              quality={100}
+              objectFit="contain"
+              objectPosition="center"
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                 i === activeIndex
                   ? "opacity-100 scale-100"
@@ -51,29 +53,39 @@ export default function MintHero() {
         </div>
 
         {/* Remaining */}
-        <div className="mt-4 font-orbitron text-sm text-gray-300 text-center">
-          <span className="text-white font-semibold">Remaining:</span> 670 / 900
+        <div className=" flex w-full border-b border-b-gray-700 py-5 justify-between items-center text-white font-semibold text-lg text-center">
+          <span className="">Remaining:</span> 670 / 900
         </div>
 
         {/* Price */}
-        <div className="mt-2 font-orbitron text-sm text-gray-300 text-center">
-          <span className="text-white font-semibold">Price:</span> 0.05 BNB
+        <div className=" flex w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
+          <span className="">Price:</span> 0.05 BNB
         </div>
 
         {/* Quantity */}
-        <div className="mt-4 flex items-center gap-2">
-          <button
-            onClick={handleDecrement}
-            className="bg-[#0098EA] px-3 py-1 rounded text-white hover:bg-[#0070b8] transition"
-          >
-            –
-          </button>
-          <span className="font-orbitron text-white text-lg">{quantity}</span>
-          <button
-            onClick={handleIncrement}
-            className="bg-[#0098EA] px-3 py-1 rounded text-white hover:bg-[#0070b8] transition"
-          >
-            +
+        <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16">
+          <span className="">Quantity:</span>
+          <div>
+            <button
+              onClick={handleDecrement}
+              className="px-4 py-1 rounded text-white transition-class cursor-pointer"
+            >
+              –
+            </button>
+            <span className=" text-white text-lg px-4 flex h-full border-x border-x-gray-700">{quantity}</span>
+            <button
+              onClick={handleIncrement}
+              className="px-4 py-1 rounded text-white transition-class cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        {/* Mint Button */}
+        <div className="w-full mt-5">
+          <button className="w-full bg-[#9c3535] text-[#081017] font-semibold py-3 rounded hover:bg-opacity-90 transition-class cursor-pointer">
+            MINT
           </button>
         </div>
       </div>
@@ -81,7 +93,7 @@ export default function MintHero() {
       {/*  Right Section */}
       <div className="md:w-1/2 flex flex-col items-center text-center">
         <h2 className="text-3xl font-orbitron text-white">Public Mint Live</h2>
-        <p className="text-sm text-gray-300 mt-2">Public mint ends in</p>
+        <p className="text-sm mt-2">Public mint ends in</p>
 
         <div className="text-2xl font-orbitron text-[#00C2FF] mt-1">
           <CountdownTimer targetDate="2025-07-31T04:00:00Z" />
