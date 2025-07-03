@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import ContextProvider from "@/context/AppKitProvider";
 import "./globals.css";
 import { Orbitron, Inter } from "next/font/google";
+import Header from "@/components/header";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${orbitron.variable} ${inter.variable}`}>
         <ContextProvider cookies={cookies}>
+          <Header />
           <main className="overflow-x-hidden min-h-screen font-inter">
           {children}
           </main>
