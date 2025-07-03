@@ -67,7 +67,7 @@ export default async function RootLayout({
       <body className={`${orbitron.variable} ${inter.variable}`}>
         <ContextProvider cookies={cookies}>
           <Header />
-          <main className="overflow-x-hidden relative min-h-screen font-inter ">
+          <main className="overflow-x-hidden relative min-h-screen font-inter z-40">
             <MeshGradient />
           {children}
           </main>
