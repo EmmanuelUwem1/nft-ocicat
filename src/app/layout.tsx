@@ -18,9 +18,35 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata = {
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://your-production-domain.com"),
   title: "Ocicat NFT Club",
   description: "Mint exclusive Ocicat NFTs on the blockchain.",
+  icons: {
+    icon: "/public/favicon.ico",
+  },
+  openGraph: {
+    title: "Ocicat NFT Club",
+    description: "Mint exclusive Ocicat NFTs on the blockchain.",
+    url: "https://your-site-url.com",
+    siteName: "Ocicat NFT Club",
+    images: [
+      {
+        url: "/public/cat_bg.jpg",
+        width: 800,
+        height: 600,
+        alt: "Open Graph Image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@your-twitter-handle",
+    creator: "@your-twitter-handle",
+    title: "Ocicat NFT Club",
+    description: "Mint exclusive Ocicat NFTs on the blockchain.",
+  },
 };
 
 
