@@ -14,7 +14,7 @@ export default function CustomConnectButton() {
   return (
     <button
       onClick={() => modal.open()}
-      className="relative px-6 py-2 font-orbitron bg-[#b0b6c06f] text-white rounded flex items-center gap-2 overflow-hidden group"
+      className="relative px-6 py-2 font-orbitron bg-[#b0b6c06f] text-white rounded flex items-center gap-2 overflow-hidden group cursor-pointer"
     >
       <Image
         src="/connect_wallet.svg"
