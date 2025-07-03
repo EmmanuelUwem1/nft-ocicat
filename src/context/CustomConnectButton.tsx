@@ -1,13 +1,32 @@
+"use client";
+
+import { useAccount } from "wagmi";
 import { modal } from "@/context/AppKitProvider";
+import Image from "next/image";
 
 export default function CustomConnectButton() {
+  const {  address } = useAccount();
+
+  const shortenedAddress = address
+    ? `${address.slice(0, 6)}...${address.slice(-4)}`
+    : "Connect";
+
   return (
     <button
       onClick={() => modal.open()}
-      className="px-4 py-2 bg-[#b0b6c06f] text-white rounded font-orbitron flex items-center gap-2 hover:bg-[#b0b6c06f] transition cursor-pointer"
+      className="relative px-6 py-2 font-orbitron bg-[#b0b6c06f] text-white rounded flex items-center gap-2 overflow-hidden group"
     >
-      <img src="/connect_wallet.svg" alt="Wallet" className="w-5 h-5" />
-      Connect
+      <Image
+        src="/connect_wallet.svg"
+        alt="Wallet"
+        width={20}
+        height={20}
+        priority
+      />
+
+      {shortenedAddress}
+
+      <span className="absolute inset-0 before:absolute before:right-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c06f] before:transition-all before:duration-300 group-hover:before:right-0 before:z-[-1] rounded" />
     </button>
   );
 }
