@@ -65,14 +65,16 @@ export default function MintHero() {
         {/* Quantity */}
         <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16">
           <span className="">Quantity:</span>
-          <div>
+          <div className="flex items-center h-full w-fit justify-center bg-[#9c3535] rounded">
             <button
               onClick={handleDecrement}
               className="px-4 py-1 rounded text-white transition-class cursor-pointer"
             >
               –
             </button>
-            <span className=" text-white text-lg px-4 flex h-full border-x border-x-gray-700">{quantity}</span>
+            <span className=" text-white text-lg px-4 flex items-center justify-center w-fit h-full border-x border-x-gray-700">
+              {quantity}
+            </span>
             <button
               onClick={handleIncrement}
               className="px-4 py-1 rounded text-white transition-class cursor-pointer"
@@ -84,22 +86,24 @@ export default function MintHero() {
 
         {/* Mint Button */}
         <div className="w-full mt-5">
-          <button className="w-full bg-[#9c3535] text-[#081017] font-semibold py-3 rounded hover:bg-opacity-90 transition-class cursor-pointer">
+          <button className="w-full bg-[#9c3535] text-[#081017] font-semibold font-orbitron py-3 rounded hover:opacity-80 transition-class cursor-pointer">
             MINT
           </button>
         </div>
       </div>
 
       {/*  Right Section */}
-      <div className="md:w-1/2 flex flex-col items-center text-center">
-        <h2 className="text-3xl font-orbitron text-white">Public Mint Live</h2>
-        <p className="text-sm mt-2">Public mint ends in</p>
+      <div className="md:w-1/2 flex flex-col items-start uppercase text-left">
+        <h2 className="md:text-5xl text-4xl font-semibold font-orbitron text-white">
+          Public Mint Live
+        </h2>
+        <p className="text-xl font-semibold mt-2">Public mint end in</p>
 
-        <div className="text-2xl font-orbitron text-[#00C2FF] mt-1">
+        <div className="text-2xl font-semibold font-orbitron mt-1">
           <CountdownTimer targetDate="2025-07-31T04:00:00Z" />
         </div>
 
-        <div className="mt-4 text-gray-400 text-sm space-y-1">
+        <div className="mt-8 text-lg font-semibold space-y-1">
           <p>
             Max NFTs per wallet:{" "}
             <span className="text-white font-semibold">{maxQuantity}</span>
@@ -110,11 +114,12 @@ export default function MintHero() {
           <p>Mint is live until July 31st 04:00h</p>
         </div>
 
-        <div className="mt-6 flex gap-4">
+        <div className="mt-6 flex justify-start items-center gap-4">
           <a
             href="https://t.me/ocicatclub"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 rounded-full relative"
           >
             <Image
               src="/icons8-telegram-app-24.svg"
@@ -123,11 +128,15 @@ export default function MintHero() {
               height={24}
               className="hover:scale-110 transition"
             />
+            <span className="text-blue-900 font-medium text-base">
+              Join Telegram
+            </span>
           </a>
           <a
             href="https://twitter.com/ocicatnft"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 rounded-full relative"
           >
             <Image
               src="/Twitter.svg"
@@ -136,6 +145,9 @@ export default function MintHero() {
               height={24}
               className="hover:scale-110 transition"
             />
+            <span className="text-blue-900 font-medium text-base">
+              Join Twitter
+            </span>
           </a>
         </div>
       </div>
