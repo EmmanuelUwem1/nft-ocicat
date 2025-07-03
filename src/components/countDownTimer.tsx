@@ -32,7 +32,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   }, [targetDate]);
 
   return (
-    <span className="font-orbitron text-xl text-[#00C2FF] tracking-wide">
+    <span className="font-orbitron text-xl font-semibold tracking-wide">
       {`${time.days}D:${String(time.hours).padStart(2, "0")}h:${String(
         time.minutes
       ).padStart(2, "0")}M:${String(time.seconds).padStart(2, "0")}s`}

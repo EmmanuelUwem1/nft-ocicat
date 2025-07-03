@@ -28,7 +28,7 @@ export default function MintHero() {
   };
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center px-4 py-12 max-w-6xl mx-auto">
+    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center px-4 py-12 max-w-3xl lg:max-w-6xl mx-auto">
       {/*  Left Section */}
       <div className="md:w-1/2 w-full font-inter flex flex-col items-center">
         {/* Animated NFT Display */}
@@ -53,7 +53,7 @@ export default function MintHero() {
         </div>
 
         {/* Remaining */}
-        <div className=" flex w-full border-b border-b-gray-700 py-5 justify-between items-center text-white font-semibold text-lg text-center">
+        <div className="flex w-full border-b border-b-gray-700 py-5 justify-between items-center text-white font-semibold text-lg text-center">
           <span className="">Remaining:</span> 670 / 900
         </div>
 
@@ -65,7 +65,7 @@ export default function MintHero() {
         {/* Quantity */}
         <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16">
           <span className="">Quantity:</span>
-          <div className="flex items-center h-full w-fit justify-center bg-[#9c3535] rounded">
+          <div className="flex items-center h-full w-fit justify-center">
             <button
               onClick={handleDecrement}
               className="px-4 py-1 rounded text-white transition-class cursor-pointer"
@@ -93,23 +93,23 @@ export default function MintHero() {
       </div>
 
       {/*  Right Section */}
-      <div className="md:w-1/2 flex flex-col items-start uppercase text-left">
-        <h2 className="md:text-5xl text-4xl font-semibold font-orbitron text-white">
+      <div className="md:w-1/2 flex flex-col items-start uppercase text-left gap-3 justify-start font-bold">
+        <h2 className="md:text-4xl text-3xl font-orbitron text-white">
           Public Mint Live
         </h2>
-        <p className="text-xl font-semibold mt-2">Public mint end in</p>
+        <p className="text-xl mt-2">Public mint end in</p>
 
-        <div className="text-2xl font-semibold font-orbitron mt-1">
+        <div className="text-2xl font-orbitron mt-1">
           <CountdownTimer targetDate="2025-07-31T04:00:00Z" />
         </div>
 
-        <div className="mt-8 text-lg font-semibold space-y-1">
+        <div className="mt-10 flex flex-col items-start justify-start gap-3 text-lg">
           <p>
             Max NFTs per wallet:{" "}
-            <span className="text-white font-semibold">{maxQuantity}</span>
+            <span className="text-white">{maxQuantity}</span>
           </p>
           <p>
-            Price: <span className="text-white font-semibold">0.05 BNB</span>
+            Price: <span className="text-white">0.05 BNB</span>
           </p>
           <p>Mint is live until July 31st 04:00h</p>
         </div>
@@ -119,7 +119,7 @@ export default function MintHero() {
             href="https://t.me/ocicatclub"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 rounded-full relative"
+            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 flex gap-2 items-center justify-center relative"
           >
             <Image
               src="/icons8-telegram-app-24.svg"
@@ -136,7 +136,7 @@ export default function MintHero() {
             href="https://twitter.com/ocicatnft"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 rounded-full relative"
+            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 flex gap-2 items-center justify-center  relative"
           >
             <Image
               src="/Twitter.svg"
