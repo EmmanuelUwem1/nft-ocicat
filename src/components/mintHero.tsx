@@ -94,16 +94,16 @@ export default function MintHero() {
 
       {/*  Right Section */}
       <div className="md:w-1/2 flex flex-col items-start uppercase text-left gap-3 justify-start font-bold">
-        <h2 className="md:text-4xl text-3xl font-orbitron text-white">
+        <h2 className="md:text-4xl font-bold text-3xl font-orbitron text-white">
           Public Mint Live
         </h2>
-        <p className="text-xl mt-2">Public mint end in</p>
+        <p className="text-xl mt-2 font-bold">Public mint end in</p>
 
         <div className="text-2xl font-orbitron mt-1">
           <CountdownTimer targetDate="2025-07-31T04:00:00Z" />
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-start gap-3 text-lg">
+        <div className="mt-10 flex flex-col items-start justify-start gap-3 text-lg font-bold">
           <p>
             Max NFTs per wallet:{" "}
             <span className="text-white">{maxQuantity}</span>
@@ -114,7 +114,7 @@ export default function MintHero() {
           <p>Mint is live until July 31st 04:00h</p>
         </div>
 
-        <div className="mt-6 flex justify-start items-center gap-4">
+        <div className="mt-6 flex justify-start font-bold items-center gap-4">
           <a
             href="https://t.me/ocicatclub"
             target="_blank"
