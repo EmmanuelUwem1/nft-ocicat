@@ -19,7 +19,7 @@ const metadata = {
   name: "Ocicat- NFT Club",
   description:
     "Ocicat NFT Club — a next-gen minting platform for exclusive Ocicat NFTs on the blockchain. Connect your wallet, explore rare collectibles, and be part of the wildest digital feline community. Powered by Web3 and built for collectors.",
-  url: "https://ocicat-nft-club.vercel.app/", // origin must match your domain & subdomain
+  url: "https://ocicat-nft-club.vercel.app",
   icons: ["https://ocicat-nft-club.vercel.app/public/cat_bg.jpg"],
 };
 
