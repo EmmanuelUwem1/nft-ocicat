@@ -26,7 +26,7 @@ export default function CustomConnectButton() {
 
       {shortenedAddress}
 
-      <span className="absolute inset-0 before:absolute before:right-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c06f] before:transition-all before:duration-300 group-hover:before:right-0 before:z-[-1] rounded" />
+      <span className="absolute inset-0 before:absolute before:right-[100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c06f] before:transition-all before:duration-300 group-hover:before:right-0 before:z-[-1] rounded cursor-pointer" />
     </button>
   );
 }

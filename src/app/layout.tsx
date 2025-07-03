@@ -4,6 +4,7 @@ import ContextProvider from "@/context/AppKitProvider";
 import "./globals.css";
 import { Orbitron, Inter } from "next/font/google";
 import Header from "@/components/header";
+import MeshGradient from "@/components/meshGradient";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -66,7 +67,8 @@ export default async function RootLayout({
       <body className={`${orbitron.variable} ${inter.variable}`}>
         <ContextProvider cookies={cookies}>
           <Header />
-          <main className="overflow-x-hidden min-h-screen font-inter">
+          <main className="overflow-x-hidden relative min-h-screen font-inter ">
+            <MeshGradient />
           {children}
           </main>
         </ContextProvider>

@@ -2,7 +2,7 @@
 
 :root {
   --foreground: #ffffff;
-  --background: #171717;
+  --background: #081017;
   --font-orbitron: 'Orbitron', sans-serif;
   --font-inter: 'Inter', sans-serif;
 }
@@ -25,5 +25,60 @@ body {
 }
 .font-inter {
   font-family: var(--font-inter);
+}
+@keyframes float1 {
+  0%   { transform: translate(10%, 5%); }
+  50%  { transform: translate(30%, -10%); }
+  100% { transform: translate(10%, 5%); }
+}
+
+@keyframes float2 {
+  0%   { transform: translate(70%, 20%); }
+  50%  { transform: translate(40%, 60%); }
+  100% { transform: translate(70%, 20%); }
+}
+
+@keyframes float3 {
+  0%   { transform: translate(30%, 80%); }
+  50%  { transform: translate(15%, 45%); }
+  100% { transform: translate(30%, 80%); }
+}
+
+.mesh-background-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-color: hsla(208, 48%, 6%, 1);
+  overflow: hidden;
+}
+
+/* Generic layer styling */
+.mesh-layer {
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Unique mesh layers */
+.mesh1 {
+  background: radial-gradient(circle at center, hsla(231, 100%, 56%, 0.6), transparent 70%);
+  animation: float1 11s ease-in-out infinite;
+}
+
+.mesh2 {
+  background: radial-gradient(circle at center, hsla(176, 100%, 76%, 0.4), transparent 70%);
+  animation: float2 14s ease-in-out infinite;
+}
+
+.mesh3 {
+  background: radial-gradient(circle at center, hsla(310, 100%, 76%, 0.5), transparent 70%);
+  animation: float3 9s ease-in-out infinite;
 }
 
