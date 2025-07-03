@@ -20,7 +20,7 @@ const inter = Inter({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-production-domain.com"),
+  metadataBase: new URL("https://ocicat-nft-club.vercel.app/"),
   title: "Ocicat NFT Club",
   description: "Mint exclusive Ocicat NFTs on the blockchain.",
   icons: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ocicat NFT Club",
     description: "Mint exclusive Ocicat NFTs on the blockchain.",
-    url: "https://your-site-url.com",
+    url: "https://ocicat-nft-club.vercel.app/",
     siteName: "Ocicat NFT Club",
     images: [
       {
