@@ -12,6 +12,33 @@
   --color-foreground: var(--foreground);
 
 }
+.bg-blur {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  /* background-color: rgba(8, 16, 23, 0.5); */
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #081017;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2b3544; /* Slightly lighter for visibility */
+  border-radius: 20px;
+  border: 2px solid #081017;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2b3544 #081017;
+}
+
 
 
 body {
