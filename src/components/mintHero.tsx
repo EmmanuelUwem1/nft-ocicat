@@ -1,8 +1,9 @@
 "use client";
-
+import Image from "next/image";
+import SocialButton from "@/components/buttons/socialsButton";
 import { useState, useEffect } from "react";
 import CountdownTimer from "@/components/countDownTimer";
-import Image from "next/image";
+import MintButton from "./buttons/MintButton";
 
 export default function MintHero() {
   const [quantity, setQuantity] = useState(1);
@@ -11,6 +12,11 @@ export default function MintHero() {
   const NFT_Images = ["/1.png", "/2.png", "/3b.png", "/4b.png", "/5.png"];
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+    const socials = [
+        { href: "https://t.me/ocicatcoin", image: "/icons8-telegram-app-24.svg", text: "Join Telegram" },
+        { href: "https://twitter.com/ocicatcoin", image: "/Twitter.svg", text: "Join Twitter" },
+  ]
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,7 +34,7 @@ export default function MintHero() {
   };
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center max-sm:w-full max-md:w-[80%] md:w-full py-12 max-w-6xl  mx-auto">
+    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center max-sm:w-full max-md:w-[80%] md:w-full py-12 max-w-4xl mx-auto">
       {/*  Left Section */}
       <div className="md:w-1/2 w-full font-inter flex flex-col items-center">
         {/* Animated NFT Display */}
@@ -63,7 +69,7 @@ export default function MintHero() {
         </div>
 
         {/* Quantity */}
-        <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16">
+        <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16 font-semibold text-lg">
           <span className="">Quantity:</span>
           <div className="flex items-center h-full w-fit justify-center">
             <button
@@ -84,12 +90,8 @@ export default function MintHero() {
           </div>
         </div>
 
-        {/* Mint Button */}
-        <div className="w-full mt-5">
-          <button className="w-full bg-[#9c3535] text-[#081017] font-semibold font-orbitron py-3 rounded hover:opacity-80 transition-class cursor-pointer">
-            MINT
-          </button>
-        </div>
+        {/* Mint button */}
+        <MintButton />
       </div>
 
       {/*  Right Section */}
@@ -115,40 +117,14 @@ export default function MintHero() {
         </div>
 
         <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap sm:flex-nowrap">
-          <a
-            href="https://t.me/ocicatcoin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 flex gap-2 items-center justify-center relative"
-          >
-            <Image
-              src="/icons8-telegram-app-24.svg"
-              alt="Telegram"
-              width={24}
-              height={24}
-              className="hover:scale-110 transition"
+          {socials.map((social, index) => (
+            <SocialButton
+              key={index}
+              href={social.href}
+              image={social.image}
+              text={social.text}
             />
-            <span className="text-blue-900 font-medium text-base">
-              Join Telegram
-            </span>
-          </a>
-          <a
-            href="https://twitter.com/ocicatcoin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 flex gap-2 items-center justify-center  relative"
-          >
-            <Image
-              src="/Twitter.svg"
-              alt="Twitter"
-              width={24}
-              height={24}
-              className="hover:scale-110 transition"
-            />
-            <span className="text-blue-900 font-medium text-base">
-              Join Twitter
-            </span>
-          </a>
+          ))}
         </div>
       </div>
     </div>
