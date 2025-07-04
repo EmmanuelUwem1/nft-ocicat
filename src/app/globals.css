@@ -98,16 +98,16 @@ body {
 /* Unique mesh layers */
 .mesh1 {
   background: radial-gradient(circle at center, hsla(231, 100%, 56%, 0.6), transparent 70%);
-  animation: float1 11s ease-in-out infinite;
+  animation: float1 9s ease-in-out infinite;
 }
 
 .mesh2 {
   background: radial-gradient(circle at center, hsla(176, 100%, 76%, 0.4), transparent 70%);
-  animation: float2 14s ease-in-out infinite;
+  animation: float2 7s ease-in-out infinite;
 }
 
 .mesh3 {
   background: radial-gradient(circle at center, hsla(310, 100%, 76%, 0.5), transparent 70%);
-  animation: float3 9s ease-in-out infinite;
+  animation: float3 11s ease-in-out infinite;
 }
 
