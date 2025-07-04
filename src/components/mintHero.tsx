@@ -28,7 +28,7 @@ export default function MintHero() {
   };
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center max-sm:w-full max-md:w-[80%] py-12 max-w-6xl  mx-auto">
+    <div className="flex flex-wrap md:flex-nowrap justify-center gap-10 items-center max-sm:w-full max-md:w-[80%] md:w-full py-12 max-w-6xl  mx-auto">
       {/*  Left Section */}
       <div className="md:w-1/2 w-full font-inter flex flex-col items-center">
         {/* Animated NFT Display */}
@@ -114,7 +114,7 @@ export default function MintHero() {
           <p>Mint is live until July 31st 04:00h</p>
         </div>
 
-        <div className="mt-6 flex justify-start font-bold items-center gap-4">
+        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4">
           <a
             href="https://t.me/ocicatclub"
             target="_blank"
