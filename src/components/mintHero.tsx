@@ -114,9 +114,9 @@ export default function MintHero() {
           <p>Mint is live until July 31st 04:00h</p>
         </div>
 
-        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4">
+        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap sm:flex-nowrap">
           <a
-            href="https://t.me/ocicatclub"
+            href="https://t.me/ocicatcoin"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 flex gap-2 items-center justify-center relative"
@@ -133,7 +133,7 @@ export default function MintHero() {
             </span>
           </a>
           <a
-            href="https://twitter.com/ocicatnft"
+            href="https://twitter.com/ocicatcoin"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:scale-110 transition-class px-2 py-3.5 border-2 border-gray-700 flex gap-2 items-center justify-center  relative"
