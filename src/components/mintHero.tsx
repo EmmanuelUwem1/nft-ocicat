@@ -114,7 +114,7 @@ export default function MintHero() {
           <p>Mint is live until July 31st 04:00h</p>
         </div>
 
-        <div className="mt-6 flex justify-start font-bold items-center gap-4">
+        <div className="mt-6 flex justify-start font-bold items-center gap-4 flex-wrap sm:flex-nowrap">
           <a
             href="https://t.me/ocicatclub"
             target="_blank"
