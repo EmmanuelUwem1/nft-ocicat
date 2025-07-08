@@ -6,15 +6,31 @@ import CountdownTimer from "@/components/countDownTimer";
 import MintButton from "./buttons/MintButton";
 import { useMaxSupply } from "@/web3/hooks/useMaxSupply";
 import { useTotalSupply } from "@/web3/hooks/useTotalSupply";
+import { useMintPrice } from "@/web3/hooks/useMintPrice";
+import { fromWei } from "@/lib/utils";
+import { useIsWhitelisted } from "@/web3/hooks/useIsWhitelisted";
+import { useHasClaimed } from "@/web3/hooks/useHasClaimed";
+// import { toWei } from "@/lib/utils";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 
 export default function MintHero() {
   const { maxSupply, mSILoading } = useMaxSupply();
-  const {totalSupply, tSILoading} = useTotalSupply()
+  const { isWhitelisted } = useIsWhitelisted();
+  const { hasClaimed } = useHasClaimed();
+  const { totalSupply, tSILoading } = useTotalSupply();
+  const { mintPrice, mPILoading } = useMintPrice();
+  const [mintPriceDisplayed, setMintPriceDisplayed] = useState("");
   const [quantity, setQuantity] = useState(1);
   const maxQuantity = 10;
+
+  useEffect(() => {
+    if (mintPrice) {
+      const convertedMintPrice = fromWei(mintPrice, 18);
+      setMintPriceDisplayed(String(Number(convertedMintPrice)*(Number(quantity))) );
+    }
+  },[mintPrice,quantity])
 
   const NFT_Images = ["/1.png", "/2.png", "/3b.png", "/4b.png", "/5.png"];
 
@@ -68,7 +84,7 @@ export default function MintHero() {
         {/* Remaining */}
         <div className="flex w-full border-b border-b-gray-700 py-5 justify-between items-center text-white font-semibold text-lg text-center">
           <span className="">Remaining:</span>{" "}
-          <span>
+          <span className="flex flex-nowrap justify-center items-center gap-2">
             <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
               <span className="text-white font-semibold">
                 {tSILoading ? <Skeleton width={60} height={20} /> : totalSupply}
@@ -84,34 +100,58 @@ export default function MintHero() {
         </div>
 
         {/* Price */}
-        <div className=" flex w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
-          <span className="">Price:</span> 0.05 BNB
+        <div className=" flex flex-nowrap w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
+          <span className="">Price:</span>{" "}
+          <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+            <span className="text-white font-semibold">
+              {mPILoading ? (
+                <Skeleton width={60} height={20} />
+              ) : (
+                `${mintPriceDisplayed} BNB`
+              )}
+            </span>
+          </SkeletonTheme>
         </div>
 
         {/* Quantity */}
-        <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16 font-semibold text-lg">
-          <span className="">Quantity:</span>
-          <div className="flex items-center h-full w-fit justify-center">
-            <button
-              onClick={handleDecrement}
-              className="px-4 py-1 rounded text-white transition-class cursor-pointer"
-            >
-              –
-            </button>
-            <span className=" text-white text-lg px-4 flex items-center justify-center w-fit h-full border-x border-x-gray-700">
-              {quantity}
-            </span>
-            <button
-              onClick={handleIncrement}
-              className="px-4 py-1 rounded text-white transition-class cursor-pointer"
-            >
-              +
+        {!isWhitelisted && !hasClaimed && (
+          <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16 font-semibold text-lg">
+            <span className="">Quantity:</span>
+            <div className="flex items-center h-full w-fit justify-center">
+              <button
+                onClick={handleDecrement}
+                className="px-4 py-1 rounded text-white transition-class cursor-pointer"
+              >
+                –
+              </button>
+              <span className=" text-white text-lg px-4 flex items-center justify-center w-fit h-full border-x border-x-gray-700">
+                {quantity}
+              </span>
+              <button
+                onClick={handleIncrement}
+                className="px-4 py-1 rounded text-white transition-class cursor-pointer"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Action buttons */}
+
+        {isWhitelisted && !hasClaimed ? (
+          <div className="w-full mt-5">
+            <button className="group relative w-full bg-[#d64545] text-[#081017] font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden cursor-pointer transition-class">
+              {/* Animated Layer */}
+              <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
+
+              {/* Button Label */}
+              <span className="z-[2]">CLAIM</span>
             </button>
           </div>
-        </div>
-
-        {/* Mint button */}
-        <MintButton />
+        ) : (
+          <MintButton />
+        )}
       </div>
 
       {/*  Right Section */}
@@ -130,8 +170,17 @@ export default function MintHero() {
             Max NFTs per wallet:{" "}
             <span className="text-white">{maxQuantity}</span>
           </p>
-          <p>
-            Price: <span className="text-white">0.05 BNB</span>
+          <p className="flex justify-between items-center gap-4">
+            Price:{" "}
+            <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+              <span className="text-white font-semibold">
+                {mintPrice ? (
+                  `${fromWei(mintPrice, 18)} BNB`
+                ) : (
+                  <Skeleton width={60} height={20} />
+                )}
+              </span>
+            </SkeletonTheme>
           </p>
           <p>Mint is live until July 31st 04:00h</p>
         </div>

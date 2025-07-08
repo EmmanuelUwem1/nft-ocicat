@@ -1,4 +1,3 @@
-// web3/hooks/useMintPrice.ts
 import { useReadContract } from "wagmi";
 import { CONSTANTS } from "@/web3/config/constants";
 import abi from "@/web3/ABIs/ocicat-nft-contract-abi.json";
@@ -14,7 +13,7 @@ export function useMintPrice() {
 
   return {
     mintPrice: result.data?.toString(), // BigNumber to string
-    isLoading: result.isLoading,
+    mPILoading: result.isLoading,
     isError: result.isError,
   };
 }

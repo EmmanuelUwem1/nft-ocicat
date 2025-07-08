@@ -1,4 +1,3 @@
-// web3/hooks/useTotalSupply.ts
 import { useReadContract } from "wagmi";
 import { CONSTANTS } from "@/web3/config/constants";
 import abi from "@/web3/ABIs/ocicat-nft-contract-abi.json";

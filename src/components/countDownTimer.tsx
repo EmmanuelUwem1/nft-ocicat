@@ -32,10 +32,23 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   }, [targetDate]);
 
   return (
-    <span className="font-orbitron text-xl font-semibold tracking-wide">
-      {`${time.days}D:${String(time.hours).padStart(2, "0")}h:${String(
-        time.minutes
-      ).padStart(2, "0")}M:${String(time.seconds).padStart(2, "0")}s`}
-    </span>
+    <div className="flex items-center gap-4 font-orbitron text-xl font-semibold tracking-wider text-white">
+      <span>
+        {time.days}
+        <span className="text-slate-400 ml-1">D</span>
+      </span>
+      <span>
+        {String(time.hours).padStart(2, "0")}
+        <span className="text-slate-400 ml-1">H</span>
+      </span>
+      <span>
+        {String(time.minutes).padStart(2, "0")}
+        <span className="text-slate-400 ml-1">M</span>
+      </span>
+      <span>
+        {String(time.seconds).padStart(2, "0")}
+        <span className="text-slate-400 ml-1">S</span>
+      </span>
+    </div>
   );
 }
