@@ -4,8 +4,15 @@ import SocialButton from "@/components/buttons/socialsButton";
 import { useState, useEffect } from "react";
 import CountdownTimer from "@/components/countDownTimer";
 import MintButton from "./buttons/MintButton";
+import { useMaxSupply } from "@/web3/hooks/useMaxSupply";
+import { useTotalSupply } from "@/web3/hooks/useTotalSupply";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 
 export default function MintHero() {
+  const { maxSupply, mSILoading } = useMaxSupply();
+  const {totalSupply, tSILoading} = useTotalSupply()
   const [quantity, setQuantity] = useState(1);
   const maxQuantity = 10;
 
@@ -60,7 +67,20 @@ export default function MintHero() {
 
         {/* Remaining */}
         <div className="flex w-full border-b border-b-gray-700 py-5 justify-between items-center text-white font-semibold text-lg text-center">
-          <span className="">Remaining:</span> 670 / 900
+          <span className="">Remaining:</span>{" "}
+          <span>
+            <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+              <span className="text-white font-semibold">
+                {tSILoading ? <Skeleton width={60} height={20} /> : totalSupply}
+              </span>
+            </SkeletonTheme>{" "}
+            /
+            <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+              <span className="text-white font-semibold">
+                {mSILoading ? <Skeleton width={60} height={20} /> : maxSupply}
+              </span>
+            </SkeletonTheme>
+          </span>
         </div>
 
         {/* Price */}
