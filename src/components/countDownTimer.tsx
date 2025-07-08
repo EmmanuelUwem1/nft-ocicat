@@ -32,7 +32,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   }, [targetDate]);
 
   return (
-    <div className="flex items-center gap-4 font-orbitron text-xl font-semibold tracking-wider text-white">
+    <div className="flex items-center gap-4 font-orbitron text-2xl font-semibold tracking-wider text-white">
       <span>
         {time.days}
         <span className="text-slate-400 ml-1">D</span>

@@ -3,14 +3,15 @@ import Image from "next/image";
 import SocialButton from "@/components/buttons/socialsButton";
 import { useState, useEffect } from "react";
 import CountdownTimer from "@/components/countDownTimer";
-import MintButton from "./buttons/MintButton";
 import { useMaxSupply } from "@/web3/hooks/useMaxSupply";
 import { useTotalSupply } from "@/web3/hooks/useTotalSupply";
 import { useMintPrice } from "@/web3/hooks/useMintPrice";
 import { fromWei } from "@/lib/utils";
 import { useIsWhitelisted } from "@/web3/hooks/useIsWhitelisted";
 import { useHasClaimed } from "@/web3/hooks/useHasClaimed";
-// import { toWei } from "@/lib/utils";
+import { useBuyNFT } from "@/web3/hooks/useBuyNFT";
+import { useClaimNFT } from "@/web3/hooks/useClaimNFT";
+import { toWei } from "@/lib/utils";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -21,9 +22,16 @@ export default function MintHero() {
   const { hasClaimed } = useHasClaimed();
   const { totalSupply, tSILoading } = useTotalSupply();
   const { mintPrice, mPILoading } = useMintPrice();
+  const { buy, isPending } = useBuyNFT();
+  const { claim, cIPending } = useClaimNFT();
   const [mintPriceDisplayed, setMintPriceDisplayed] = useState("");
   const [quantity, setQuantity] = useState(1);
   const maxQuantity = 10;
+
+  function handleMint(totalMintPrice: string) {
+    const payingAmount = BigInt(totalMintPrice);
+    buy(payingAmount);
+  }
 
   useEffect(() => {
     if (mintPrice) {
@@ -141,16 +149,50 @@ export default function MintHero() {
 
         {isWhitelisted && !hasClaimed ? (
           <div className="w-full mt-5">
-            <button className="group relative w-full bg-[#d64545] text-[#081017] font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden cursor-pointer transition-class">
+            <button
+              onClick={claim} // call your claim function here
+              disabled={isPending}
+              className={`group relative w-full bg-[#d64545] text-[#081017] font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
+                isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
+              }`}
+            >
               {/* Animated Layer */}
               <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
 
-              {/* Button Label */}
-              <span className="z-[2]">CLAIM</span>
+              {/* Button Label or Loader */}
+              <span className="z-[2] flex items-center justify-center">
+                {cIPending ? (
+                  <span className="inline-block h-5 w-5 border-2 border-t-white border-white/20 rounded-full animate-spin" />
+                ) : (
+                  "CLAIM"
+                )}
+              </span>
             </button>
           </div>
         ) : (
-          <MintButton />
+          <div
+            className="w-full mt-5"
+            onClick={() => handleMint(toWei(mintPriceDisplayed))}
+          >
+            <button
+              disabled={isPending}
+              className={`group relative w-full bg-[#d64545] text-[#081017] font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
+                isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
+              }`}
+            >
+              {/* Animated Layer */}
+              <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
+
+              {/* Button Label or Loader */}
+              <span className="z-[2] flex items-center justify-center">
+                {isPending ? (
+                  <span className="inline-block h-5 w-5 border-2 border-t-white border-white/20 rounded-full animate-spin" />
+                ) : (
+                  "MINT"
+                )}
+              </span>
+            </button>
+          </div>
         )}
       </div>
 
