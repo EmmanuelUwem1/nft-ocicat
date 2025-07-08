@@ -5,6 +5,7 @@ import "./globals.css";
 import { Orbitron, Inter } from "next/font/google";
 import Header from "@/components/header";
 import MeshGradient from "@/components/meshGradient";
+import { Toaster } from "react-hot-toast";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -66,8 +67,19 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${orbitron.variable} ${inter.variable}`}>
         <ContextProvider cookies={cookies}>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "#1A263F",
+                color: "#fff",
+                fontFamily: "Orbitron, sans-serif",
+                zIndex: "1000",
+              },
+            }}
+          />
           <Header />
-          <main className="overflow-x-hidden relative h-screen font-inter z-40">
+          <main className="overflow-x-hidden relative h-screen font-inter z-10">
             <MeshGradient />
             {children}
           </main>

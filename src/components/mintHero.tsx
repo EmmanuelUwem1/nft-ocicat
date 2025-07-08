@@ -11,12 +11,16 @@ import { useIsWhitelisted } from "@/web3/hooks/useIsWhitelisted";
 import { useHasClaimed } from "@/web3/hooks/useHasClaimed";
 import { useBuyNFT } from "@/web3/hooks/useBuyNFT";
 import { useClaimNFT } from "@/web3/hooks/useClaimNFT";
+import { useAccount } from "wagmi";
 import { toWei } from "@/lib/utils";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import toast from "react-hot-toast";
 
 
 export default function MintHero() {
+    const { address} = useAccount();
+  
   const { maxSupply, mSILoading } = useMaxSupply();
   const { isWhitelisted } = useIsWhitelisted();
   const { hasClaimed } = useHasClaimed();
@@ -29,9 +33,19 @@ export default function MintHero() {
   const maxQuantity = 10;
 
   function handleMint(totalMintPrice: string) {
-    const payingAmount = BigInt(totalMintPrice);
+    if (!address) {
+      toast.error("Please connect your wallet to mint", {
+        icon: "🔌",
+        duration: 4000,
+      });
+      return;
+    }
+
+    const payingAmount: bigint = BigInt(totalMintPrice);
     buy(payingAmount);
   }
+
+  
 
   useEffect(() => {
     if (mintPrice) {
