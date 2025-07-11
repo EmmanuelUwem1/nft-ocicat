@@ -166,7 +166,7 @@ export default function MintHero() {
             <button
               onClick={claim} // call your claim function here
               disabled={isPending}
-              className={`group relative w-full bg-[#d64545] text-[#081017] font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
+              className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
                 isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
               }`}
             >
@@ -190,7 +190,7 @@ export default function MintHero() {
           >
             <button
               disabled={isPending}
-              className={`group relative w-full bg-[#d64545] text-[#081017] font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
+              className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
                 isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
               }`}
             >
