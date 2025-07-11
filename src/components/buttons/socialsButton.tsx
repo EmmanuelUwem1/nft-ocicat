@@ -11,7 +11,7 @@ function SocialButton({href,image,text}:SocialButtonProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="transition-class px-2 py-3.5 border-2 border-gray-700 flex w-60 gap-2 items-center justify-center relative overflow-hidden group"
+      className="transition-class px-2 py-3.5 border-2 border-gray-700 flex w-full gap-2 items-center justify-center relative overflow-hidden group"
     >
       <Image
         src={image}

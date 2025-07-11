@@ -11,6 +11,7 @@ import { useIsWhitelisted } from "@/web3/hooks/useIsWhitelisted";
 import { useHasClaimed } from "@/web3/hooks/useHasClaimed";
 import { useBuyNFT } from "@/web3/hooks/useBuyNFT";
 import { useClaimNFT } from "@/web3/hooks/useClaimNFT";
+import { useNFTBalance } from "@/web3/hooks/useNFTBalance";
 import { useAccount } from "wagmi";
 import { toWei } from "@/lib/utils";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -26,6 +27,7 @@ export default function MintHero() {
   const { hasClaimed } = useHasClaimed();
   const { totalSupply, tSILoading } = useTotalSupply();
   const { mintPrice, mPILoading } = useMintPrice();
+  const { balance, bILoading } = useNFTBalance();
   const { buy, isPending } = useBuyNFT();
   const { claim, cIPending } = useClaimNFT();
   const [mintPriceDisplayed, setMintPriceDisplayed] = useState("");
@@ -121,6 +123,22 @@ export default function MintHero() {
           </span>
         </div>
 
+
+        {/* user MFT balance */}
+
+
+        <div className="flex w-full border-b border-b-gray-700 py-5 justify-between items-center text-white font-semibold text-lg text-center">
+          <span className="">Your holding:</span>{" "}
+          <span className="flex flex-nowrap justify-center items-center gap-2">
+            <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+              <span className="text-white font-semibold">
+                {bILoading ? <Skeleton width={60} height={20} /> : balance}
+              </span>
+            </SkeletonTheme>{" "}
+            Ocicat NFT
+          </span>
+        </div>
+
         {(!isWhitelisted || hasClaimed) && (
           <>
             {/* price */}
@@ -200,31 +218,31 @@ export default function MintHero() {
             </button>
           </div>
         )}
-        {(hasClaimed || !isWhitelisted)  && (
-            <div
-              className="w-full mt-5"
-              onClick={() => handleMint(toWei(mintPriceDisplayed))}
+        {(hasClaimed || !isWhitelisted) && (
+          <div
+            className="w-full mt-5"
+            onClick={() => handleMint(toWei(mintPriceDisplayed))}
+          >
+            <button
+              disabled={isPending}
+              className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
+                isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
+              }`}
             >
-              <button
-                disabled={isPending}
-                className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
-                  isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
-                }`}
-              >
-                {/* Animated Layer */}
-                <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
+              {/* Animated Layer */}
+              <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
 
-                {/* Button Label or Loader */}
-                <span className="z-[2] flex items-center justify-center">
-                  {isPending ? (
-                    <span className="inline-block h-5 w-5 border-2 border-t-white border-white/20 rounded-full animate-spin" />
-                  ) : (
-                    "MINT"
-                  )}
-                </span>
-              </button>
-            </div>
-          )}
+              {/* Button Label or Loader */}
+              <span className="z-[2] flex items-center justify-center">
+                {isPending ? (
+                  <span className="inline-block h-5 w-5 border-2 border-t-white border-white/20 rounded-full animate-spin" />
+                ) : (
+                  "MINT"
+                )}
+              </span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/*  Right Section */}
@@ -258,7 +276,7 @@ export default function MintHero() {
           <p>Mint is live until August 31st 04:00h</p>
         </div>
 
-        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap sm:flex-nowrap">
+        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap">
           {socials.map((social, index) => (
             <SocialButton
               key={index}
