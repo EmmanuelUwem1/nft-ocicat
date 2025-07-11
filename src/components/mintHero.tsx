@@ -121,7 +121,7 @@ export default function MintHero() {
           </span>
         </div>
 
-        {!isWhitelisted && !hasClaimed && (
+        {(!isWhitelisted || hasClaimed) && (
           <>
             {/* price */}
             <div className=" flex flex-nowrap w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
@@ -159,7 +159,7 @@ export default function MintHero() {
             </div>
           </>
         )}
-{/* eligible amount */}
+        {/* eligible amount */}
         {isWhitelisted && !hasClaimed && (
           <div className=" flex flex-nowrap w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
             <span className="">Amount:</span>{" "}
@@ -177,10 +177,10 @@ export default function MintHero() {
 
         {/* Action buttons */}
 
-        {isWhitelisted && !hasClaimed ? (
+        {isWhitelisted && !hasClaimed && (
           <div className="w-full mt-5">
             <button
-              onClick={claim} // call your claim function here
+              onClick={claim}
               disabled={isPending}
               className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
                 isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
@@ -199,31 +199,32 @@ export default function MintHero() {
               </span>
             </button>
           </div>
-        ) : (
-          <div
-            className="w-full mt-5"
-            onClick={() => handleMint(toWei(mintPriceDisplayed))}
-          >
-            <button
-              disabled={isPending}
-              className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
-                isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
-              }`}
-            >
-              {/* Animated Layer */}
-              <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
-
-              {/* Button Label or Loader */}
-              <span className="z-[2] flex items-center justify-center">
-                {isPending ? (
-                  <span className="inline-block h-5 w-5 border-2 border-t-white border-white/20 rounded-full animate-spin" />
-                ) : (
-                  "MINT"
-                )}
-              </span>
-            </button>
-          </div>
         )}
+        {(hasClaimed || !isWhitelisted)  && (
+            <div
+              className="w-full mt-5"
+              onClick={() => handleMint(toWei(mintPriceDisplayed))}
+            >
+              <button
+                disabled={isPending}
+                className={`group relative w-full bg-[#FF2727] text-white font-semibold font-orbitron py-3 rounded flex justify-center items-center overflow-hidden transition-all ${
+                  isPending ? "cursor-not-allowed opacity-75" : "cursor-pointer"
+                }`}
+              >
+                {/* Animated Layer */}
+                <span className="absolute inset-0 before:absolute before:left-[-100%] before:top-0 before:h-full before:w-full before:bg-[#b0b6c02d] before:transition-all before:duration-300 group-hover:before:left-0 before:z-[1] rounded" />
+
+                {/* Button Label or Loader */}
+                <span className="z-[2] flex items-center justify-center">
+                  {isPending ? (
+                    <span className="inline-block h-5 w-5 border-2 border-t-white border-white/20 rounded-full animate-spin" />
+                  ) : (
+                    "MINT"
+                  )}
+                </span>
+              </button>
+            </div>
+          )}
       </div>
 
       {/*  Right Section */}
