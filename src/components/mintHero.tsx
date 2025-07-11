@@ -22,7 +22,7 @@ export default function MintHero() {
     const { address} = useAccount();
   
   const { maxSupply, mSILoading } = useMaxSupply();
-  const { isWhitelisted } = useIsWhitelisted();
+  const { isWhitelisted,eligibleAmount,amTLoading } = useIsWhitelisted();
   const { hasClaimed } = useHasClaimed();
   const { totalSupply, tSILoading } = useTotalSupply();
   const { mintPrice, mPILoading } = useMintPrice();
@@ -121,41 +121,57 @@ export default function MintHero() {
           </span>
         </div>
 
-        {/* Price */}
-        <div className=" flex flex-nowrap w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
-          <span className="">Price:</span>{" "}
-          <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
-            <span className="text-white font-semibold">
-              {mPILoading ? (
-                <Skeleton width={60} height={20} />
-              ) : (
-                `${mintPriceDisplayed} BNB`
-              )}
-            </span>
-          </SkeletonTheme>
-        </div>
-
-        {/* Quantity */}
         {!isWhitelisted && !hasClaimed && (
-          <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16 font-semibold text-lg">
-            <span className="">Quantity:</span>
-            <div className="flex items-center h-full w-fit justify-center">
-              <button
-                onClick={handleDecrement}
-                className="px-4 py-1 rounded text-white transition-class cursor-pointer"
-              >
-                –
-              </button>
-              <span className=" text-white text-lg px-4 flex items-center justify-center w-fit h-full border-x border-x-gray-700">
-                {quantity}
-              </span>
-              <button
-                onClick={handleIncrement}
-                className="px-4 py-1 rounded text-white transition-class cursor-pointer"
-              >
-                +
-              </button>
+          <>
+            {/* price */}
+            <div className=" flex flex-nowrap w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
+              <span className="">Price:</span>{" "}
+              <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+                <span className="text-white font-semibold">
+                  {mPILoading ? (
+                    <Skeleton width={60} height={20} />
+                  ) : (
+                    `${mintPriceDisplayed} BNB`
+                  )}
+                </span>
+              </SkeletonTheme>
             </div>
+            {/* quantity */}
+            <div className=" flex w-full justify-between items-center gap-2 border-b border-b-gray-700 h-16 font-semibold text-lg">
+              <span className="">Quantity:</span>
+              <div className="flex items-center h-full w-fit justify-center">
+                <button
+                  onClick={handleDecrement}
+                  className="px-4 py-1 rounded text-white transition-class cursor-pointer"
+                >
+                  –
+                </button>
+                <span className=" text-white text-lg px-4 flex items-center justify-center w-fit h-full border-x border-x-gray-700">
+                  {quantity}
+                </span>
+                <button
+                  onClick={handleIncrement}
+                  className="px-4 py-1 rounded text-white transition-class cursor-pointer"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+{/* eligible amount */}
+        {isWhitelisted && !hasClaimed && (
+          <div className=" flex flex-nowrap w-full justify-between items-center border-b border-b-gray-700 py-5 text-white font-semibold text-center">
+            <span className="">Amount:</span>{" "}
+            <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
+              <span className="text-white font-semibold">
+                {amTLoading ? (
+                  <Skeleton width={60} height={20} />
+                ) : (
+                  `${eligibleAmount} `
+                )}
+              </span>
+            </SkeletonTheme>
           </div>
         )}
 

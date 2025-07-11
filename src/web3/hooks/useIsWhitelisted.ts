@@ -10,16 +10,24 @@ export function useIsWhitelisted() {
   const result = useReadContract({
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi,
-    functionName: "whitelist", 
+    functionName: "whitelist",
     args: [address!],
     query: {
       enabled: isConnected && !!address,
     },
   });
 
+  // Cast and derive values
+  const eligibleAmount = result.data
+    ? BigInt(result.data.toString())
+    : BigInt(0);
+  const isWhitelisted = eligibleAmount > BigInt(0);
+
   return {
-    isWhitelisted: result.data as boolean | undefined,
-    isLoading: result.isLoading,
+    eligibleAmount, // full amount returned by contract
+    isWhitelisted, // true if amount > 0
+    amTLoading: result.isLoading,
     isError: result.isError,
+    error: result.error,
   };
 }
