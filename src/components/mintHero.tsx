@@ -253,7 +253,7 @@ export default function MintHero() {
         <p className="text-xl mt-2 font-bold">Public mint end in</p>
 
         <div className="text-2xl font-orbitron mt-1">
-          <CountdownTimer targetDate="2025-08-31T04:00:00Z" />
+          <CountdownTimer targetDate="2025-09-30T04:00:00Z" />
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-start gap-3 text-lg font-bold">
