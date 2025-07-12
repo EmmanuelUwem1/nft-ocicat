@@ -35,19 +35,19 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
     <div className="flex items-center gap-4 font-orbitron text-2xl font-semibold tracking-wider text-white">
       <span>
         {time.days}
-        <span className="text-slate-400 ml-1">D</span>
+        <span className="text-slate-400 ml-1 font-inter">D</span>
       </span>
       <span>
         {String(time.hours).padStart(2, "0")}
-        <span className="text-slate-400 ml-1">H</span>
+        <span className="text-slate-400 ml-1 font-inter">H</span>
       </span>
       <span>
         {String(time.minutes).padStart(2, "0")}
-        <span className="text-slate-400 ml-1">M</span>
+        <span className="text-slate-400 ml-1 font-inter">M</span>
       </span>
       <span>
         {String(time.seconds).padStart(2, "0")}
-        <span className="text-slate-400 ml-1">S</span>
+        <span className="text-slate-400 ml-1 font-inter">S</span>
       </span>
     </div>
   );
