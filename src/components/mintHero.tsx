@@ -273,7 +273,7 @@ export default function MintHero() {
               </span>
             </SkeletonTheme>
           </p>
-          <p>Mint is live until August 31st 04:00h</p>
+          <p>Mint is live until September 30th 04:00h</p>
         </div>
 
         <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap">
