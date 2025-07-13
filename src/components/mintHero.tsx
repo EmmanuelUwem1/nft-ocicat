@@ -276,7 +276,7 @@ export default function MintHero() {
           <p>Mint is live until October 11th 04:00h</p>
         </div>
 
-        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap">
+        <div className="mt-6 mb-16 flex w-full justify-start font-bold items-center gap-4 flex-wrap">
           {socials.map((social, index) => (
             <SocialButton
               key={index}
