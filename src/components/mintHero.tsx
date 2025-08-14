@@ -28,7 +28,7 @@ export default function MintHero() {
   const { totalSupply, tSILoading } = useTotalSupply();
   const { mintPrice, mPILoading } = useMintPrice();
   const { balance, bILoading } = useNFTBalance();
-  const { buy, isPending } = useBuyNFT();
+  const { buy, isPending} = useBuyNFT();
   const { claim, cIPending } = useClaimNFT();
   const [mintPriceDisplayed, setMintPriceDisplayed] = useState("");
   const [quantity, setQuantity] = useState(1);
