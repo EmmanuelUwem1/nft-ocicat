@@ -253,7 +253,7 @@ export default function MintHero() {
         <p className="text-xl mt-2 font-bold">Public mint end in</p>
 
         <div className="text-2xl font-orbitron mt-1">
-          <CountdownTimer targetDate="2025-08-31T04:00:00Z" />
+          <CountdownTimer targetDate="2025-10-11T04:00:00Z" />
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-start gap-3 text-lg font-bold">
@@ -273,10 +273,10 @@ export default function MintHero() {
               </span>
             </SkeletonTheme>
           </p>
-          <p>Mint is live until August 31st 04:00h</p>
+          <p>Mint is live until October 11th 04:00h</p>
         </div>
 
-        <div className="mt-6 flex w-full justify-start font-bold items-center gap-4 flex-wrap">
+        <div className="mt-6 mb-16 flex w-full justify-start font-bold items-center gap-4 flex-wrap">
           {socials.map((social, index) => (
             <SocialButton
               key={index}
