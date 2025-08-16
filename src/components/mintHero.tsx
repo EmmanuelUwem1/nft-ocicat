@@ -9,7 +9,7 @@ import { useMintPrice } from "@/web3/hooks/useMintPrice";
 import { fromWei } from "@/lib/utils";
 import { useIsWhitelisted } from "@/web3/hooks/useIsWhitelisted";
 import { useHasClaimed } from "@/web3/hooks/useHasClaimed";
-import { useBuyNFT } from "@/web3/hooks/useBuyNFT";
+import { useMintNFT } from "@/web3/hooks/useMintNFT";
 import { useClaimNFT } from "@/web3/hooks/useClaimNFT";
 import { useNFTBalance } from "@/web3/hooks/useNFTBalance";
 import { useAccount } from "wagmi";
@@ -28,7 +28,7 @@ export default function MintHero() {
   const { totalSupply, tSILoading } = useTotalSupply();
   const { mintPrice, mPILoading } = useMintPrice();
   const { balance, bILoading } = useNFTBalance();
-  const { buy, isPending} = useBuyNFT();
+  const { mint, isPending} = useMintNFT();
   const { claim, cIPending } = useClaimNFT();
   const [mintPriceDisplayed, setMintPriceDisplayed] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -44,7 +44,7 @@ export default function MintHero() {
     }
 
     const payingAmount: bigint = BigInt(totalMintPrice);
-    buy(payingAmount);
+    mint(payingAmount, quantity);
   }
 
   

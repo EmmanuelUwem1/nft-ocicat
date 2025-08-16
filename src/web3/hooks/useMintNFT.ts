@@ -6,11 +6,11 @@ import { useQueryClient } from "@tanstack/react-query";
 
 const CONTRACT_ADDRESS = CONSTANTS.OCICAT_NFT_CONTRACT_ADDRESS;
 
-export function useBuyNFT() {
+export function useMintNFT() {
   const { writeContract, isPending } = useWriteContract();
   const queryClient = useQueryClient();
 
-  const buy = async (payableAmount: bigint) => {
+  const mint = async (payableAmount: bigint, amount: number) => {
     const toastId = toast.loading("Minting in progress...");
 
     return new Promise((resolve, reject) => {
@@ -18,7 +18,8 @@ export function useBuyNFT() {
         {
           address: CONTRACT_ADDRESS as `0x${string}`,
           abi,
-          functionName: "buy",
+          functionName: "mint",
+          args: [amount], 
           value: payableAmount,
         },
         {
@@ -44,7 +45,7 @@ export function useBuyNFT() {
   };
 
   return {
-    buy,
-    isPending, // 👈 Now exposed for use in your UI
+    mint,
+    isPending,
   };
 }
