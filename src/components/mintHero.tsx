@@ -62,7 +62,7 @@ export default function MintHero() {
 
     const socials = [
         { href: "https://t.me/ocicatcoin", image: "/icons8-telegram-app-24.svg", text: "Join Telegram" },
-        { href: "https://twitter.com/ocicatcoin", image: "/Twitter.svg", text: "Join Twitter" },
+        { href: "https://x.com/ocicattoken", image: "/Twitter.svg", text: "Join Twitter" },
   ]
 
   useEffect(() => {
